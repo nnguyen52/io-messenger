@@ -1,7 +1,6 @@
 require("dotenv").config();
 const User = require("./db/User");
 const { connectDB, mongoUrl } = require("./app");
-
 const seed = async () => {
   await connectDB(mongoUrl);
   const user1 = new User({
