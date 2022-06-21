@@ -1,0 +1,27 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bin/www.js",
+  "scripts": {
+    "seed": "node ./seed.js",
+    "start": "node bin/www.js",
+    "dev": "nodemon bin/www.js"
+  },
+  "dependencies": {
+    "cloudinary": "^1.30.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "http-errors": "^2.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.6",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.16",
+    "socket.io": "^4.5.1"
+  },
+  "engines": {
+    "node": "16.15.0"
+  }
+}
