@@ -176,7 +176,6 @@ const AuthControl = ({ children }) => {
     }
     const searchConvo = async () => {
       const { data } = await axios.post(`/api/conversations/${search}`);
-      // console.log("search", data);
       dispatch(
         setConversations({
           conversations: data.conversations.map((convo) => {
@@ -202,7 +201,6 @@ const AuthControl = ({ children }) => {
   };
 
   // ...........App funtions ..........................
-  // console.log(router);
   // if not logged in -> push to login
   useEffect(() => {
     if (isFetching || !userData) router.push("/login");
