@@ -476,7 +476,7 @@ const SettingsModal = ({ setSettingsModal, avatar, setAvatar }) => {
         )}
       </Box>
       <Box
-        className={classes.close}
+        // className={classes.close}
         onClick={() => {
           if (avatar) {
             if (confirm("You have not save new avatar. Are you sure!"))

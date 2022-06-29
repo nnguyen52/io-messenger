@@ -196,7 +196,7 @@ const CurrentUser = ({
       {themeMode && (
         <Box
           sx={{
-            zIndex: 100,
+            zIndex: 0,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",

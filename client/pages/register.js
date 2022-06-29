@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import {
@@ -9,13 +9,18 @@ import {
   FormHelperText,
   Paper,
 } from "@mui/material";
+import DarkModeToggle from "react-dark-mode-toggle";
+import { useTheme } from "@mui/material/styles";
 import { useStyles_Login_Logout } from "../pages/login";
 import { toast } from "react-toastify";
+import { ColorModeContext } from "../src/context/darkMode";
 
 const Signup = ({ user, register }) => {
   const router = useRouter();
 
   const classes = useStyles_Login_Logout();
+  const theme = useTheme();
+  const colorMode = useContext(ColorModeContext);
 
   const [formErrorMessage, setFormErrorMessage] = useState({});
 
@@ -49,7 +54,15 @@ const Signup = ({ user, register }) => {
           src={`https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.istockphoto.com%2Fvectors%2Fbusiness-people-chatting-vector-id1141444248&f=1&nofb=1`}
           alt="leftContainer_backgroundImg"
         />
-        <Box className={classes.backgroundImg_overlay}> </Box>
+        <Box
+          className={classes.backgroundImg_overlay}
+          sx={{
+            background:
+              theme.palette.mode == "light"
+                ? "linear-gradient(180deg, rgba(0,3,36,1) 0%, rgba(64,83,219,1) 0%, rgba(66,175,255,0.7402311266303396) 100%)"
+                : "linear-gradient(180deg, rgba(0,3,36,1) 0%, rgba(0,0,0,1) 0%, rgba(103,28,255,0.8018557764902836) 100%)",
+          }}
+        ></Box>
         <Box className={classes.backgroundImg_overlay_content}>
           <img
             className={classes.backgroundImg_overlay_content_image}
@@ -61,9 +74,29 @@ const Signup = ({ user, register }) => {
         </Box>
       </Box>
       {/* right pannel */}
-      <Box className={classes.rightContainer}>
+      <Box
+        className={classes.rightContainer}
+        sx={{
+          bgcolor: "background.default",
+        }}
+      >
         <Box className={classes.settingsRoot}>
-          <Box className={classes.setting}> </Box>
+          <Box className={classes.setting}>
+            <Box
+              sx={{
+                zIndex: 100,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <DarkModeToggle
+                onChange={() => colorMode.toggleColorMode()}
+                checked={theme.palette.mode == "light" ? false : true}
+                size={80}
+              />
+            </Box>
+          </Box>
           <Box className={`${classes.setting} ${classes.settingMiddle}`}>
             Already have an account?
           </Box>
@@ -78,7 +111,12 @@ const Signup = ({ user, register }) => {
           </Box>
         </Box>
         {/* form */}
-        <Box className={classes.formContainer}>
+        <Box
+          className={classes.formContainer}
+          sx={{
+            color: "color.default",
+          }}
+        >
           <form onSubmit={handleRegister} className={classes.form}>
             <h1 className={classes.formTitle}>Create an account!</h1>
             <FormControl
