@@ -57,6 +57,7 @@ export default function Home({
   }, [userData, router]);
   const classes = useStyles();
   const userData = useSelector((state) => state.auth);
+
   // ...........settings modal........................
   const [settingsModal, setSettingsModal] = useState(false);
   const [avatar, setAvatar] = useState(null);
