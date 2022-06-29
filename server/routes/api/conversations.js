@@ -55,7 +55,6 @@ router.post("/newLastSeenMessage", async (req, res) => {
   }).populate("lastSeenMessages");
   // if existing lastSeenMsgs empty -> add new
   if (convo.lastSeenMessages.length == 0) {
-    // console.log("____add fresh new because no one have seen msg");
     await Conversation.findOneAndUpdate(
       { _id: req.body?.lastSeenMsg.conversationId.toString() },
       {
@@ -72,7 +71,6 @@ router.post("/newLastSeenMessage", async (req, res) => {
         (each) => each.senderId == req.body.lastSeenMsg.senderId
       ).length == 0
     ) {
-      // console.log("____filtering ");
       return await Conversation.findOneAndUpdate(
         { _id: req.body.lastSeenMsg.conversationId },
         {
@@ -83,7 +81,6 @@ router.post("/newLastSeenMessage", async (req, res) => {
         }
       );
     } else {
-      // console.log("____add new for the other");
       const filteredLastSeenMsgs = convo.lastSeenMessages.map((each) => {
         if (each.senderId == req.body.lastSeenMsg.senderId) {
           return req.body.lastSeenMsg._id.toString();
@@ -177,7 +174,6 @@ router.post("/:search", async (req, res) => {
           user1: req.user._id.toString(),
           user2: each._id.toString(),
         });
-        // console.log("___create new convo", newConvo);
         convos.push({
           ...newConvo._doc,
           user1:
